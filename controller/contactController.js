@@ -1,5 +1,5 @@
 // Import contact model
-Contact = require('./contactModel');
+Contact = require('../models/contactModel');
 
 // Handle index actions
 exports.index = function (req, res) {
@@ -13,6 +13,7 @@ exports.index = function (req, res) {
         res.json({
             status: "success",
             message: "Contacts retrieved successfully",
+            datetime: new Date(),
             data: contacts
         });
     });
@@ -33,6 +34,7 @@ exports.new = function (req, res) {
 
         res.json({
             message: 'New contact created!',
+            datetime: new Date(),
             data: contact
         });
     });
@@ -46,6 +48,7 @@ exports.view = function (req, res) {
             res.send(err);
         res.json({
             message: 'Contact details loading..',
+            datetime: new Date(),
             data: contact
         });
     });
@@ -69,6 +72,7 @@ exports.update = function (req, res) {
                 res.json(err);
             res.json({
                 message: 'Contact Info updated',
+                datetime: new Date(),
                 data: contact
             });
         });
@@ -86,7 +90,8 @@ exports.delete = function (req, res) {
 
         res.json({
             status: "success",
-            message: 'Contact deleted'
+            message: 'Contact deleted',
+            datetime: new Date(),
         });
     });
 };

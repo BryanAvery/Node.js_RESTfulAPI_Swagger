@@ -8,7 +8,7 @@ let mongoose = require('mongoose');
 let app = express();
 
 // Import routes
-let apiRoutes = require("./api-routes")
+let apiRoutes = require("./controller/routers/contactrouter")
 
 
 // Configure bodyparser to handle post requests
@@ -18,20 +18,21 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/resthub');
+mongoose.connect('mongodb://localhost/resthub?useNewUrlParser=true');
 
-var db = mongoose.connection;
 // Setup server port
 var port = process.env.PORT || 8080;
 
-
 // Send message for default URL
-app.get('/', (req, res) => res.send('Hello World with Express'));
+app.get('/', (req, res) => res.send(`
+<div>This is a working RESTful API example</div></br>
+
+<div><a href='http://localhost:8080/api/contacts'>http://localhost:8080/api/contacts</a></div>`));
 
 // Use Api routes in the App
 app.use('/api', apiRoutes)
 
 // Launch app to listen to specified port
 app.listen(port, function () {
-    console.log("Running RestHub on port " + port);
+    console.log("Running RESTfulAPI on port " + port);
 });

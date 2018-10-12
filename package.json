@@ -1,5 +1,5 @@
 {
-  "name": "resthub",
+  "name": "RESTfulAPI",
   "version": "1.0.0",
   "description": "An app demonstrating simple Restful API implementation",
   "main": "index.js",
