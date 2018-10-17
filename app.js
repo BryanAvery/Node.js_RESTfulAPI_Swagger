@@ -7,6 +7,13 @@ let mongoose = require('mongoose');
 // Initialize the app
 let app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./api/swagger/swagger.yaml');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 // Import routes
 let apiRoutes = require("./controller/routers/contactrouter")
 
@@ -30,7 +37,7 @@ app.get('/', (req, res) => res.send(`
 <div><a href='http://localhost:8080/api/contacts'>http://localhost:8080/api/contacts</a></div>`));
 
 // Use Api routes in the App
-app.use('/api', apiRoutes)
+app.use('/api/v0', apiRoutes)
 
 // Launch app to listen to specified port
 app.listen(port, function () {

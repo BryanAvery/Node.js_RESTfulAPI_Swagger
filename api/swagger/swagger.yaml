@@ -1,0 +1,131 @@
+swagger: "2.0"
+info:
+  description: "This is a sample RESTful API has been produced to allow for easy access to a standard method for documenting a RESTful API"
+  version: "0.0.1"
+  title: "RESTful API Standard Template"
+  contact:
+    email: "b_avery@yahoo.com"
+    url: "http://bryanavery.co.uk/"
+basePath: "/api/v0"
+paths:
+  /contacts:
+    get:
+      summary: list contacts
+      description: 
+        returns a list of all the contacts
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: OK
+          
+    post:
+      summary: "Add a new contact to the Contact"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Contact name that needs to be added to the Contacts"
+          required: true
+          schema:
+            $ref: "#/definitions/Contact"
+      responses:
+        200:
+          description: OK
+        405:
+          description: "Invalid input"
+
+  /contacts/{contact_id}:
+    get:
+      summary: "Find contact by ID"
+      description: "Returns a contact pet"
+      operationId: "getContactById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "contact_id"
+        in: "path"
+        description: "ID of contact to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Contact not found"
+    put:
+      summary: "Update an existing contact"
+      description: ""
+      operationId: "updateContact"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "contact_id"
+        in: "path"
+        description: "ID of contact to update"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Contact object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Contact"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Contact not found"
+        405:
+          description: "Validation exception"
+    delete:
+      summary: "Deletes a contact"
+      description: ""
+      operationId: "deleteContact"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "contact_id"
+        in: "path"
+        description: "ID of contact to be deleted"
+        required: true
+        type: "string"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Contact not found"
+          
+definitions:
+  Contact:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        example: "John"
+      email:
+        type: "string"
+      gender:
+        type: "string"
+        enum:
+        - "male"
+        - "female"
+        - "other"
+      phone:
+        type: "string"
+        description: "phone number for the contact"
+    xml:
+      name: "Contact"
