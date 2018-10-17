@@ -1,6 +1,6 @@
 # https://github.com/BryanAvery/Node.js_RESTfulAPI.git
 
-An app demonstrating simple API implementation with NodeJs, Express and MongoDb
+An app demonstrating simple API implementation with NodeJs, Express and MongoDb, with the addition of Swagger RESTful API documentation
 
 The companion tutorial on building can be found here <b>How To Build Simple RESTful API With NodeJs, ExpressJs And MongoDb</b> 
 
@@ -12,11 +12,10 @@ The `api` uri preceeds all API endpoints and the following endpoints are current
 * PATCH `/api/contacts/:id`
 * DELETE `/api/contacts/:id`
 
-The live app is available on heroku here
-https://arcane-spire-97294.herokuapp.com
+To edit the Swagger file type in the terminal window:
 
+swagger project edit
 
-Get in Touch
-===============
+The RESTful API documentation can be found at:
 
-I am available on twitter, facebook, linkedin, gmail @dinyangetoh
+http://localhost:8080/api-docs/
