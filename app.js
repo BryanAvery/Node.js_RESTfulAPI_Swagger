@@ -15,7 +15,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Import routes
-let apiRoutes = require("./controller/routers/contactrouter")
+let apiRoutes = require("./routers/contactrouter")
 
 
 // Configure bodyparser to handle post requests
