@@ -16,7 +16,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Import routes
 let apiRoutes = require("./routers/contactrouter")
-
+let apiRoutesV1 = require("./routers/v1/contactrouter")
 
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
@@ -38,6 +38,7 @@ app.get('/', (req, res) => res.send(`
 
 // Use Api routes in the App
 app.use('/api/v0', apiRoutes)
+app.use('/api/v1', apiRoutes)
 
 // Launch app to listen to specified port
 app.listen(port, function () {
