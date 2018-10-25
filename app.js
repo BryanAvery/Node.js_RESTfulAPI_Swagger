@@ -34,7 +34,7 @@ var port = process.env.PORT || 8080;
 app.get('/', (req, res) => res.send(`
 <div>This is a working RESTful API example</div></br>
 
-<div><a href='http://localhost:8080/api/contacts'>http://localhost:8080/api/contacts</a></div>`));
+<div><a href='http://localhost:8080/api/v0/contacts'>http://localhost:8080/api/v0/contacts</a></div>`));
 
 // Use Api routes in the App
 app.use('/api/v0', apiRoutes)

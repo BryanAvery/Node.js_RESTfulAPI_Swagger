@@ -1,10 +1,12 @@
 // Import contact model
 Contact = require('../models/contactModel');
+var httpStatus = require('http-status-codes');
 
 // Handle index actions
 exports.index = function (req, res) {
     Contact.get(function (err, contacts) {
         if (err) {
+            res.status(httpStatus.INTERNAL_SERVER_ERROR);
             res.json({
                 status: "error",
                 message: err,
@@ -30,7 +32,7 @@ exports.new = function (req, res) {
     // save the contact and check for errors
     contact.save(function (err) {
         if (err) {
-            res.status(405);
+            res.status(httpStatus.METHOD_NOT_ALLOWED);
             res.Data = res.json(err);
         } else res.json({
             message: 'New contact created!',
@@ -40,16 +42,15 @@ exports.new = function (req, res) {
     });
 };
 
-
 // Handle view contact info
 exports.view = function (req, res) {
     Contact.findById(req.params.contact_id, function (err, contact) {
         if (err){
-            res.status(400);
+            res.status(httpStatus.BAD_REQUEST);
             res.Data = res.json(err);
         } else {
             if(contact == null) {
-                res.status(404);
+                res.status(httpStatus.NOT_FOUND);
                 res.Data = res.json(err);
             } else {
                 res.json({
@@ -65,12 +66,12 @@ exports.update = function (req, res) {
 
     Contact.findById(req.params.contact_id, function (err, contact) {
         if (err){
-            res.status(400);
+            res.status(httpStatus.BAD_REQUEST);
             res.Data = res.json(err);
         } else {
 
             if(contact == null) {
-                res.status(404);
+                res.status(httpStatus.NOT_FOUND);
                 res.Data = res.json(err);
             } else {
 
@@ -94,12 +95,11 @@ exports.update = function (req, res) {
     });
 };
 
-
 // Handle delete contact
 exports.delete = function (req, res) {
     Contact.remove({ _id: req.params.contact_id }, function (err, contact) {
         if (err){
-            res.status(400);
+            res.status(httpStatus.BAD_REQUEST);
             res.Data = res.json(err);
         } else {
             console.log(contact);
